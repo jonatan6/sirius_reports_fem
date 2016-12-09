@@ -48,7 +48,7 @@ int main (int argc, char ** argv)
 #ifdef LIBMESH_HAVE_EXODUS_API
   ExodusII_IO(mesh).write_equation_systems ("out.e",
                                             equation_systems);
-#endif 
+#endif
   return 0;
 }
 void assemble_stokes (EquationSystems & es,
@@ -136,7 +136,7 @@ void assemble_stokes (EquationSystems & es,
           for (unsigned int i=0; i<n_p_dofs; i++)
             for (unsigned int j=0; j<n_v_dofs; j++)
               Kpv(i,j) += -JxW[qp]*psi[i][qp]*dphi[j][qp](1);
-        } 
+        }
       {
         for (unsigned int s=0; s<elem->n_sides(); s++)
           if (elem->neighbor_ptr(s) == libmesh_nullptr)
@@ -156,11 +156,11 @@ void assemble_stokes (EquationSystems & es,
                         Fu(n) += penalty*u_value;
                         Fv(n) += penalty*v_value;
                       }
-                } 
-            } 
-      } 
+                }
+            }
+      }
       dof_map.constrain_element_matrix_and_vector (Ke, Fe, dof_indices);
       system.matrix->add_matrix (Ke, dof_indices);
       system.rhs->add_vector    (Fe, dof_indices);
-    } 
+    }
 }
